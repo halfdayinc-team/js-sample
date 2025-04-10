@@ -1,4 +1,4 @@
-name: Build
+name: SonarQube analysis
 on:
   workflow_dispatch:
   push:
@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    name: Build
+    name: Analyze with SonarQube
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,6 +16,7 @@ jobs:
           fetch-depth: 0
       - uses: sonarsource/sonarqube-scan-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           SONAR_TOKEN: ${{ secrets.NAUTILUS2_TOKEN }}
           SONAR_HOST_URL: ${{ vars.NAUTILUS2_HOST_URL }}
       # If you wish to fail your job when the Quality Gate is red, uncomment the
