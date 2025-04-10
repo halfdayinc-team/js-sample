@@ -1,4 +1,4 @@
-name: Build
+name: SonarQube Scan
 on:
   workflow_dispatch:
   push:
@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    name: Build
+    name: scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
